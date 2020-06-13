@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hhdghdhfihdgjlsdgjoagjowkeopfkpo</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script>
+        function beautify() {
+            jsonStr = $('#editor1').val()
+            var input;
+            try {
+                if (jsonStr.length == 0) {
+                    return false;
+                } else if (!isJSON(jsonStr)) {
+
+                    return alert('您输入的内容非正规json格式，请检查后重试！');
+
+                }
+                input = eval('(' + jsonStr + ')');
+            } catch (error) {
+                console.log(error);
+                return alert('JSON 格式化错误！');
+
+            }
+
+            $('#editor1').val(JSON.stringify(input, null, 4));
+
+        }
+
+        function isJSON(str) {
+            if (typeof str === 'string') {
+                try {
+                    let obj = JSON.parse(str);
+                    if (typeof obj === 'object' && obj) {
+                        return obj;
+                    } else {
+                        return false;
+                    }
+                } catch (error) {
+                    console.log(error);
+                    return false;
+                }
+            }
+        };
+
+    </script>
+
+
+</head>
+
+<body>
+    <div style="border:5px solid #ddd;">
+        <h1>查找不限层级Json数据中某个key或者value的路径</h1>
+        <form action="/login/" method="POST">
+            <div>
+                <p>请输入查找的key: <input type="text" id="key" name="key" value={{ redata.key }}></p>
+                <p>请输入要查找的value: <input type="text" id="key1" name="key1" value={{ redata.value }}></p>
+                <button type="button" class="btn btn-warning" id="formatting" onclick="beautify();">格式化</button>
+                <input type="submit" class="btn btn-success" value="提交">
+                <div class="col-md-12" id="warning">
+                    <p><strong>{{ redata.error }}</strong></p>
+                </div>
+            </div>
+            <textarea class="column " style="height: 671px; width: 418px;" id="editor1"
+                placeholder="给一个JSON字符串，然后会自动格式化" spellcheck="false" name="jstr">{{ redata.jstr }}</textarea>
+            <textarea id="editor2" style="height: 671px; width: 418px;" class="clumn " placeholder="key值"
+                name="jstr1">{{ redata.res2 }}</textarea>
+            <textarea id="editor3" style="height: 671px; width: 418px;" class="clumn " placeholder="value值"
+                name="jstr2">{{ redata.res3 }}</textarea>
+        </form>
+
+    </div>
+</body>
+
+</html>

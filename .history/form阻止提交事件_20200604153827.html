@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        function func() {
+            alert('111')
+            return true;
+        }
+
+
+        function pfunc(event) {
+                event.preventDefault();
+                alert('111')
+
+                return false;     
+
+            }
+    </script>
+</head>
+
+<body>
+    
+    <!-- 
+            1.利用表单的onsubmit事件 
+            注意：onsubmit事件的作用对象为<form>，所以把onsubmit事件加在提交按钮身上是没有效果的。 
+            form对象的onsubmit事件类似onclick,都是先处理调用的函数，再进行表单是否跳转布尔值的判断 
+            οnsubmit="return true" 为默认的表单提交事件 
+            οnsubmit="return false"为阻止表单提交事件
+
+
+    -->
+        
+        <form action="http://www.baidu.com" onsubmit="return func()">
+        <input type="submit" value="提交" />
+    </form>
+    
+
+
+     <!--
+         2.用onclick点击事件来return false 
+讲一下表单提交按钮onclick事件： 
+οnclick="return true" 为默认的表单提交事件 
+οnclick="return false"为阻止表单提交事件 
+而一般用onclick来调用函数都是没有返回值的，所以一般调用完成后为默认return true;所以才会看到，先处理回调函数后再进行表单提交跳转
+     -->
+
+    <form action="http://www.baidu.com">
+        <input type="text" id='c1' placeholder="wyqtest">
+        <!-- <input type="submit" value="button" οnclick="return func();" /> -->
+        <button  type="submit" onclick="return func()">提交1</button>
+
+    </form>
+       
+
+
+
+<form action="http://www.baidu.com">
+    <input type="submit" value="button" onclick="pfunc(event);" />
+</form>
+
+
+
+
+
+</body>
+
+</html>

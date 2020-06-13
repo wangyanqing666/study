@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script type="text/javascript">
+            var $btn=$('#submit')
+            $btn.click(function () {
+
+                    $('#h1').fadeIn(1000, 'swing', function () {
+                        alert('done!');
+                    });
+
+                });
+    </script>
+</head>
+<body>
+
+    <div id="div1"> 
+        <button type="button"  id="submit">提交</button>
+
+        <h1 id='h1'>王彦青</h1>
+    </div>
+</body>
+</html>
