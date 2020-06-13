@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script type="text/javascript" src="wyq.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(function () {
+            $('#but1').click(function () {
+                var str = $('#editor1').val();
+                var str1 = formatjson(str);
+                $('#editor1').val(str1)
+
+            });
+            $('#but2').click(function () {
+                var str = $('#editor1').val();
+                alert(isjson(str));
+
+            });
+
+
+            $("#but1").hover(function () {
+                $("p").css("background-color", "yellow");
+            }, function () {
+                $("p").css("background-color", "pink");
+            });
+
+          
+
+    </script>
+
+    <style type="text/css">
+        .list {
+            height: 40px;
+            line-height: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>第一个按钮</p>
+        <button type="submit" id='but1'>按钮1</button>
+        <p>第二个按钮</p>
+
+        <input type="button" value="按钮2" id='but2' />
+    </div>
+
+    <div>
+        <textarea class="column " style="height: 671px; width: 418px;" id="editor1" placeholder="给一个JSON字符串，然后会自动格式化"
+            spellcheck="false" name="jstr"></textarea>
+    </div>
+
+
+
+</body>
+
+</html>
