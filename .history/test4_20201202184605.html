@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jean同步配置</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body style="margin:50px">
+
+    <div class="container-fluid">
+
+        <div class="form-group">
+            <label class="control-label">cookies失效替换:</label>
+            <input style="width:480px;height:50px;" type="text" id="key4" name="key4">
+            <button type="button" class="btn btn-warning" id="tj4" onclick="recookies()">提交</button>
+        </div>
+        <form role="form">
+            <div class="form-group">
+                <label for="name">以下功能输出结果:</label>
+                <!-- <textarea class="form-control" rows="3"></textarea> -->
+                <textarea id="editor4" class="form-control" rows="8" placeholder="接口调用后出参" name="editor4"></textarea>
+            </div>
+        </form>
+    </div>
+
+        <form role="form">
+           <h3>功能1：环境配置同步 </h3>
+
+            <div class="form-group">
+                <label for="name">基准环境—必填项：</label>
+                <select class="form-control" id="baseenv" name="baseenv">
+                    <option value="h1">新网关灰度1(t.elong.com)</option>
+                    <option value="h2">新网关灰度2(huidu2.vip.elong)</option>
+                    <option value="h3">新网关灰度3(huidu3.vip.elong)</option>
+                </select>
+                <span>===>></span>
+                <span>同步环境—必填项：</span>
+                <select class="form-control"  id="synenv" name="synenv">
+                    <option value="">请选择</option>
+                    <option value="h1">新网关灰度1(t.elong.com)</option>
+                    <option value="h2">新网关灰度2(huidu2.vip.elong)</option>
+                    <option value="h3">新网关灰度3(huidu3.vip.elong)</option>
+                </select>
+                <span>是否全部同步并生效下发:</span>
+                <select class="form-control"  id="syn1" name="syn">
+                    <option value=0>否</option>
+                    <option value=1>是</option>
+                </select>
+                <span><button type="button" class="btn btn-warning" id="tj1" onclick="syscondata()">提交</button></span>
+            </div>
+        </form>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

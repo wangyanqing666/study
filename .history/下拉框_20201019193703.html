@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+</head>
+
+<body>
+    <div>
+        <a id='a'>顶部</a>
+        <form action="http://www.baidu.com" method="get">
+            <div>
+                <!-- 下拉框 -->
+                <select name="sel" size="1">
+                    <option value="1">广州</option>
+                    <option value="2">深圳</option>
+                    <option selected value="3">山东</option>
+                    <option value="4">北京</option>
+                </select>
+            </div>
+            <input type="submit" value="提交">
+        </form>
+    </div>
+
+   <br>
+
+    <div>
+        <form action="http://www.baidu.com" method="get">
+            <div>
+                <!-- 下拉框 -->
+                <select name="sel" size="3" multiple>
+                    <option value="1">广州</option>
+                    <option value="2">深圳</option>
+                    <option selected value="3">山东</option>
+                    <option value="4">北京</option>
+                </select>
+            </div>
+            <input type="submit" value="提交">
+        </form>
+    </div>
+
+<br>
+
+        <a  href="#a">顶部</a>
+
+    <div>
+        <form action="http://www.baidu.com" method="get">
+            <div>
+                <!-- optgroup 下拉框分组功能 -->
+                <select name="city" size="5" multiple="multiple">
+                    <optgroup label="广东省">
+                        <option value="1">广州</option>
+                        <option value="2">深圳</option>
+                    </optgroup>
+    
+                    <optgroup label="浙江省">
+                        <option value="1">杭州</option>
+                        <option value="2">温州</option>
+                    </optgroup>
+                </select>
+            </div>
+            <input type="submit" value="提交">
+        </form>
+    </div>
+
+    <br>
+
+
+    <div style="position:relative;">
+        <span style="margin-left:100px;width:18px;overflow:hidden;">
+            <select style="width:118px;margin-left:-100px" οnchange="this.parentNode.nextSibling.value=this.value">
+                <option value="">请选择 </option>
+                <option value="csdn">csdn </option>
+                <option value="123">123</option>
+                <option value="write.blog.csdn.net/postedit ">write.blog.csdn.net/postedit </option>
+            </select></span><input name="box" style="width:100px;position:absolute;left:0px;">
+    </div>
+</body>
+
+</html>

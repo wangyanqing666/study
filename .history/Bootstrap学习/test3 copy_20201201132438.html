@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>表单和图片</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body style="margin:50px">
+<div class="container-fluid"  >
+        <h3>功能1：debug模式查看商品库返回信息</h3>
+
+        <form class="form-inline">
+            <div class="form-group">
+                <label>选择环境—必填项：</label>
+                <select class="form-control" id="env" name="env">
+                    <option value="http://mobileapi.t.elong.com">新网关灰度1(t.elong.com)</option>
+                    <option value="http://mobileapi-huidu2.vip.elong.com">新网关灰度2(huidu2.vip.elong)</option>
+                    <option value="http://mobileapi-huidu3.vip.elong.com">新网关灰度3(huidu3.vip.elong)</option>
+                    <option value="http://mobile-api2011.elong.com">线上环境(api2011.elong.com)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>是否debug:</label>
+                <select class="form-control" id="debug" name="debug">
+                    <option value="false">否</option>
+                    <option value="true">是</option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-warning" id="formatting" onclick="beautify();">格式化</button>
+
+                <button type="button" class="btn btn-warning" id="tj1">提交</button>
+
+            </div>
+
+        </form>
+    </div>
+
+    <div class="container-fluid">
+        <form class="form-inline" >
+        <div class="text-primary">
+            <h3>功能2：环境差异对比(以基准环境为准) <code>若对比接口为空，默认对比同一个接口，对比接口格式：/hotel/hotelListV6 </code> </h3>
+            <span>基准环境—必填项：</span>
+            <select id="baseenv" name="baseenv">
+                <option value="http://mobileapi.t.elong.com">新网关灰度1(t.elong.com)</option>
+                <option value="http://mobileapi-huidu2.vip.elong.com">新网关灰度2(huidu2.vip.elong)</option>
+                <option value="http://mobileapi-huidu3.vip.elong.com">新网关灰度3(huidu3.vip.elong)</option>
+                <option value="http://mobile-api2011.elong.com" selected="selected">线上环境(api2011.elong.com)</option>
+            </select>
+            <span>==>></span>
+            <span>对比环境—必填项：</span>
+            <select id="synenv" name="synenv">
+                <option value="">请选择</option>
+                <option value="http://mobileapi.t.elong.com">新网关灰度1(t.elong.com)</option>
+                <option value="http://mobileapi-huidu2.vip.elong.com">新网关灰度2(huidu2.vip.elong)</option>
+                <option value="http://mobileapi-huidu3.vip.elong.com">新网关灰度3(huidu3.vip.elong)</option>
+                <option value="http://mobile-api2011.elong.com">线上环境(api2011.elong.com)</option>
+            </select>
+        
+            <input type="text" id="key2" name="key2" placeholder="对比接口" style="width:200px;height:30px;">
+        
+        
+            <button type="button" class="btn btn-warning" id="tj2" onclick="difffun()">开始对比</button>
+        
+        </div>
+
+</form>
+ 
+ 
+ 
+    </div>
+
+</body>
+
+</html>

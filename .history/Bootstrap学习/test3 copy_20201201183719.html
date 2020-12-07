@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>表单和图片</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body style="margin:50px">
+    <div class="container-fluid">
+        <div class="row">
+
+            <form class="form-inline text-info " role="form">
+                <h3>功能1：debug模式查看商品库返回信息</h3>
+
+                <div class="form-group">
+                    <label>选择环境—必填项：</label>
+                    <select class="form-control" id="env" name="env">
+                        <option value="http://mobileapi.t.elong.com">新网关灰度1(t.elong.com)</option>
+                        <option value="http://mobileapi-huidu2.vip.elong.com">新网关灰度2(huidu2.vip.elong)</option>
+                        <option value="http://mobileapi-huidu3.vip.elong.com">新网关灰度3(huidu3.vip.elong)</option>
+                        <option value="http://mobile-api2011.elong.com">线上环境(api2011.elong.com)</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label>是否debug:</label>
+                    <select class="form-control" id="debug" name="debug">
+                        <option value="false">否</option>
+                        <option value="true">是</option>
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-warning" id="formatting" onclick="beautify();">格式化</button>
+
+                    <button type="button" class="btn btn-warning" id="tj1">提交</button>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="container-fluid   text-primary">
+        <div class="row">
+
+            <form class="form-inline">
+                <h3>功能2：环境差异对比(以基准环境为准) <code>若对比接口为空，默认对比同一个接口，对比接口格式：/hotel/hotelListV6 </code> </h3>
+
+
+                <div class="form-group">
+                    <label>基准环境—必填项：</label>
+                    <select class="form-control" id="baseenv" name="baseenv">
+                        <option value="http://mobileapi.t.elong.com">新网关灰度1(t.elong.com)</option>
+                        <option value="http://mobileapi-huidu2.vip.elong.com">新网关灰度2(huidu2.vip.elong)</option>
+                        <option value="http://mobileapi-huidu3.vip.elong.com">新网关灰度3(huidu3.vip.elong)</option>
+                        <option value="http://mobile-api2011.elong.com" selected="selected">线上环境(api2011.elong.com)
+                        </option>
+                    </select>
+                    <label>==>></label>
+                </div>
+                <div class="form-group">
+                    <label>对比环境—必填项：</label>
+
+                    <select class="form-control" id="synenv" name="synenv">
+                        <option value="">请选择</option>
+                        <option value="http://mobileapi.t.elong.com">新网关灰度1(t.elong.com)</option>
+                        <option value="http://mobileapi-huidu2.vip.elong.com">新网关灰度2(huidu2.vip.elong)</option>
+                        <option value="http://mobileapi-huidu3.vip.elong.com">新网关灰度3(huidu3.vip.elong)</option>
+                        <option value="http://mobile-api2011.elong.com">线上环境(api2011.elong.com)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="key2" name="key2" placeholder="对比接口" style="width:200px;height:30px;">
+
+
+                    <button type="button" class="btn btn-warning" id="tj2" onclick="difffun()">开始对比</button>
+
+                </div>
+
+            </form>
+
+
+        </div>
+
+    </div>
+    <div class="container-fluid  ">
+        <div class="row">
+            <form class="form-inline" role="form">
+                <div class="form-group">
+
+                    <textarea class="form-control"  id="editor1"
+                        placeholder="Fiddle抓包请求" spellcheck="false" name="jstr">{{ datate }}</textarea>
+                    <textarea id="editor2"  class="form-control" placeholder="原始出参"
+                        name="jstr1">{{ oldreq }}</textarea>
+                    <textarea id="editor3"  class="form-control" placeholder="商品库入参"
+                        name="jstr2">{{ goods_par }}</textarea>
+                    <textarea id="editor4" class="form-control" placeholder="商品库出参"
+                        name="jstr2">{{ goods_req }}</textarea>
+
+            </form>
+
+
+        </div>
+    </div>
+    </div>
+    <script>
+        function beautify() {
+
+            $.each($('textarea'), function (i, n) {
+                $(this).css({ 'border-color': "" });
+
+                jsonStr = $(this).val();
+                var input;
+                try {
+                    if (jsonStr.length == 0) {
+                        return false;
+                    } else if (!isJSON(jsonStr)) {
+                        $(this).css({ 'border-color': "red" });
+
+
+                        return alert($(this).prop('placeholder') + '您输入的内容非正规json格式，请检查后重试！');
+
+                    }
+                    input = eval('(' + jsonStr + ')');
+                } catch (error) {
+                    console.log(error);
+                    return alert('JSON 格式化错误！');
+
+                }
+
+                $(this).val(JSON.stringify(input, null, 4));
+
+            })
+
+
+        };
+
+        function isJSON(str) {
+            if (typeof str === 'string') {
+                try {
+                    let obj = JSON.parse(str);
+                    if (typeof obj === 'object' && obj) {
+                        return obj;
+                    } else {
+                        return false;
+                    }
+                } catch (error) {
+                    console.log(error);
+                    return false;
+                }
+            }
+        };
+
+        $(function () {
+
+            $('#tj1').click(function () {
+                var jsonStr = $('#editor1').val();
+                var env = $('#env').val();
+                var debug = $('#debug').val();
+                try {
+                    if (jsonStr.length == 0) {
+                        return false;
+                    } else if (!isJSON(jsonStr)) {
+
+                        return alert('您输入的内容非正规json格式，请检查后重试！');
+                    }
+                } catch (error) {
+                    return alert('JSON 格式化错误！');
+
+                }
+                $('button').attr("disabled", true);
+
+                $.ajax({
+                    url: '/alaskasend',
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json;charset=UTF-8',
+                    data: JSON.stringify({ jstr: jsonStr, env: env, debug: debug }),
+                    success: function (respone) {
+                        $('button').attr("disabled", false);
+
+
+                        if (respone.erron == 0) {
+                            // alert('接口请求成功')
+                            $('#editor2').val(respone.oldreq)
+                            $('#editor3').val(respone.goods_par)
+                            $('#editor4').val(respone.goods_req)
+
+                        } else {
+                            // 请求失败
+                            $('#warning1').text(respone.errmsg)
+                            $('button').attr("disabled", false);
+
+
+                        }
+                    },
+                    error: function () {
+                        $('button').attr("disabled", false);
+
+                        return alert('服务器超时，请重试！');
+                    }
+                });
+
+            });
+
+        });
+
+        function difffun() {
+            var baseenv = $('#baseenv').val();
+            var synenv = $('#synenv').val();
+            var jsonStr = $('#editor1').val();
+            var key2 = $('#key2').val();
+
+
+            try {
+                if (baseenv.length == 0 || synenv.length == 0) {
+                    return alert('同步环境必填项，请检查后重试！');
+
+                }
+                $('button').attr("disabled", true);
+
+            } catch (error) {
+                $('button').attr("disabled", true);
+                return alert('服务器异常，稍后再试');
+
+            }
+
+
+            $.ajax({
+                url: '/difffun',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json;charset=UTF-8',
+                data: JSON.stringify({ baseenv: baseenv, synenv: synenv, jstr: jsonStr, key2: key2 }),
+                success: function (respone) {
+                    $('button').attr("disabled", false);
+                    if (respone.erron == 0) {
+                        alert('成功');
+                        $('#editor2').val(respone.datate);
+                        return true;
+                    } else {
+
+                        alert('请求失败，请检查入参或者稍后再试');
+                        return true
+
+
+                    }
+                },
+                error: function () {
+                    $('button').attr("disabled", false);
+                    return alert('服务器超时，请重试！');
+
+
+                }
+            });
+        };
+
+
+    </script>
+
+
+</body>
+
+</html>

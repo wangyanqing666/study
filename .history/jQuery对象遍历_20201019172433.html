@@ -1,0 +1,32 @@
+<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+<script>
+    var cities = ["深圳市", "广州市", "珠海市", "上海市", "北京市"];
+    //jQuery对象调用遍历
+    $(cities).each(function (i, n) {
+        console.log(i + " = " + n);
+    });
+</script>
+
+<script>
+    //jQuery函数调用
+    $.each(cities, function (i, n) {
+        console.log(i + " > " + n);
+    });
+</script>
+
+<script>
+    var cities = ["深圳市", "广州市", "珠海市", "上海市", "北京市"]
+
+    function callback(i, n) {
+        console.log("123：" + i + n);
+    }
+
+    function foreach(array, callback) {
+        for (var i = 0; i < array.length; i++) {
+            var item = array[i];
+            callback(i, item);
+        }
+    }
+    //调用
+    foreach(cities, callback);
+</script>

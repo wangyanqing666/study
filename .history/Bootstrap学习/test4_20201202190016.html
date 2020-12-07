@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>jean同步配置</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+   
+
+</head>
+
+<body>
+    <div style="border:5px solid #ddd ;">
+        <h1 style="text-align:center;">灰度环境配置文件同步</h1>
+
+        <div style="text-indent:2em;">
+            <strong>cookies失效替换:</strong>
+            <input type="text" id="key4" name="key4" style="width:480px;height:50px;">
+            <button type="button" class="btn btn-warning" id="tj4" onclick="recookies()">提交</button>
+        </div>
+
+        <div class="bh">
+            <h2> 以下功能输出结果： </h2>
+            <textarea id="editor4" style="height: 200px; width: 1000px;" placeholder="接口调用后出参"
+                name="editor4"></textarea>
+        </div>
+
+
+        <div style="text-indent:2em;">
+
+            <div class="bh" style="display: block;">
+                <h3>功能1：环境配置同步 </h3>
+                <h5>
+                    <span>基准环境—必填项：</span>
+                    <select id="baseenv" name="baseenv">
+                        <option value="h1">新网关灰度1(t.elong.com)</option>
+                        <option value="h2">新网关灰度2(huidu2.vip.elong)</option>
+                        <option value="h3">新网关灰度3(huidu3.vip.elong)</option>
+                    </select>
+                    <span>===>></span>
+                    <span>同步环境—必填项：</span>
+                    <select id="synenv" name="synenv">
+                        <option value="">请选择</option>
+                        <option value="h1">新网关灰度1(t.elong.com)</option>
+                        <option value="h2">新网关灰度2(huidu2.vip.elong)</option>
+                        <option value="h3">新网关灰度3(huidu3.vip.elong)</option>
+                    </select>
+                    <span>是否全部同步并生效下发:</span>
+                    <select id="syn1" name="syn">
+                        <option value=0>否</option>
+                        <option value=1>是</option>
+                    </select>
+                    <span><button type="button" class="btn btn-warning" id="tj1"
+                            onclick="syscondata()">提交</button></span>
+
+                </h5>
+            </div>
+            <hr style="border:1px dotted #036" />
+
+            <div class="bh">
+                <h3>功能2：多环境新增配置文件 </h3>
+                <h5>
+                    <span>基准环境—必填项：</span>
+
+                    <select id="baseenv2" name="baseenv2">
+                        <option value="h1">新网关灰度1(t.elong.com)</option>
+                        <option value="h2">新网关灰度2(huidu2.vip.elong)</option>
+                        <option value="h3">新网关灰度3(huidu3.vip.elong)</option>
+                    </select>
+                    <span>是否全部同步并生效下发:</span>
+                    <select id="syn2" name="syn2">
+                        <option value=0>否</option>
+                        <option value=1>是</option>
+                    </select>
+                    <span><button type="button" class="btn btn-warning" id="tj2" onclick="addcon()">提交</button></span>
+
+                </h5>
+                <h5>
+                    <div>
+                        <p>新增配置文件key: <input type="text" id="key2" name="key2" style="width:200px;height:30px;"></p>
+
+                        <p>新增配置文件value: </p>
+                        <textarea id="editor2" style="height: 100px; width: 800px;" placeholder=""
+                            name="editor2"></textarea>
+                    </div>
+                </h5>
+            </div>
+
+            <div class="bh">
+                <h3>功能3：多环境修改配置文件 </h3>
+                <h5>
+                    <span>基准环境—必填项：</span>
+
+                    <select id="baseenv3" name="baseenv2">
+                        <option value="h1">新网关灰度1(t.elong.com)</option>
+                        <option value="h2">新网关灰度2(huidu2.vip.elong)</option>
+                        <option value="h3">新网关灰度3(huidu3.vip.elong)</option>
+                    </select>
+                    <span>是否全部同步并生效下发:</span>
+                    <select id="syn3" name="syn3">
+                        <option value=0>否</option>
+                        <option value=1>是</option>
+                    </select>
+                    <span><button type="button" class="btn btn-warning" id="tj3">提交</button></span>
+
+                </h5>
+                <hr style="border:1px dotted #036" />
+
+                <h5>
+                    <div>
+                        <p>新增配置文件key: <input type="text" id="key3" name="key3" style="width:200px;height:30px;"></p>
+
+                        <p>新增配置文件value: </p>
+                        <textarea id="editor3" style="height: 100px; width: 800px;" placeholder=""
+                            name="editor3"></textarea>
+                    </div>
+                </h5>
+
+
+            </div>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
