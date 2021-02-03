@@ -1,0 +1,144 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <title>报表</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="chartmain" style="width:100%; height: 500px;"></div>
+
+    <script type="text/javascript">
+        var appdata = ['iPhone12,1', 'iPhone10,3', 'iPhone11,6', 'iPhone11,8', 'iPhone9,2', 'iPhone10,2', 'LIO-AN00', 'ELS-AN00', 'iPhone12,5', 'TAS-AN00', 'iPhone9,1', 'ELE-AL00', 'iPhone10,1', 'HMA-AL00', 'iPhone8,2', 'LYA-AL00', 'ANA-AN00', 'iPhone13,2', 'iPhone11,2', 'iPhone13,4', 'iPhone12,3', 'iPhone8,1', 'VOG-AL10', 'TAS-AL00', 'VOG-AL00', 'SEA-AL10', 'EML-AL00', 'iPhone13,3', 'BLA-AL00', 'PACM00', 'NOH-AN00', 'CLT-AL00', 'ALP-AL00', 'Mi 10', 'MI 8', 'MHA-AL00', 'HLK-AL00', 'YAL-AL00', 'PCT-AL10', 'LIO-AL00', 'MI 9', 'JEF-AN00', 'iPhone7,2', 'PBEM00', 'iPhone12,8', 'PAR-AL00', 'iPhone7,1', 'MI 8 Lite', 'COL-AL10', 'VCE-AL00', 'EVR-AL00', 'Redmi Note 8 Pro', 'WLZ-AN00', 'PCAM00', 'SPN-AL00', 'YAL-AL10', 'OXF-AN10', 'vivo X21A', 'CDY-AN00', 'JER-AN10', 'ELS-AN10', 'BKL-AL20', 'STK-AL00', 'BMH-AN10', 'MAR-AL00', 'LYA-AL10', 'iPhone10,6', 'Redmi K30 5G', 'LIO-AN00P', 'Redmi K20 Pro', 'Mi 10 Pro', 'CDY-AN90', 'V1809A', 'V1838A', 'HWI-AL00', 'Redmi Note 7 Pro', 'INE-AL00', 'V1938CT', 'GLK-AL00', 'Redmi K30 Pro', 'MI 6', 'vivo X20A', 'VTR-AL00', 'JSN-AL00a', 'EBG-AN00', 'JEF-AN20', 'M2002J9E', 'JSN-AL00', 'PCAM10', 'Redmi K30', 'V1813A', 'V1831A', 'V1816A', 'TAH-AN00m', 'PCHM10', 'M2006J10C', 'M2007J1SC', 'VKY-AL00', 'PDPM00', 'Redmi Note 8', 'LDN-TL20', 'GM1910', 'V1824A', 'HRY-AL00Ta', 'MI 6X', 'V1911A', 'LON-AL00', 'TEL-AN00a', 'JKM-AL00b', 'OXF-AN00', 'SM-G9750', 'TNY-AL00', 'V1981A', 'iPhone13,1', 'NOP-AN00', 'MIX 2S', 'OPPO R11', 'PBAM00', 'V1962A', 'V1829A', 'SM-G9650', 'PCRM00', 'vivo NEX A', 'JNY-AL10', 'Redmi Note 7', 'V1901A', 'PDNM00', 'JKM-AL00', 'PAAM00', 'YAL-AL50', 'V2002A', 'WLZ-AL10', 'JER-AN20', 'COR-AL10', 'LYA-AL00P', 'CLT-AL01', 'SM-G9730', 'MIX 2', 'DVC-AN20', 'Redmi K20 Pro Premium Edition', 'V2001A', 'HLK-AL10', 'Mi Note 3', 'LRA-AL00', 'HRY-AL00a', 'MI 9 SE', 'PBBM00', 'V1934A', 'iPhone9,4', 'PCKM00']
+        var cn = [4569, 4090, 3112, 2866, 2342, 2138, 1921, 1724, 1706, 1665, 1566, 1560, 1519, 1349, 1287, 1210, 1171, 1087, 1083, 1022, 1005, 922, 837, 829, 827, 813, 813, 681, 619, 588, 578, 562, 503, 481, 466, 462, 460, 448, 431, 417, 408, 404, 392, 376, 369, 364, 355, 355, 336, 312, 293, 285, 281, 269, 265, 261, 257, 250, 243, 242, 240, 239, 239, 236, 228, 227, 227, 211, 208, 204, 197, 194, 193, 189, 188, 184, 181, 181, 178, 177, 175, 174, 174, 171, 171, 166, 166, 158, 156, 152, 151, 148, 148, 146, 144, 141, 139, 137, 136, 136, 136, 133, 129, 128, 127, 127, 126, 126, 125, 125, 124, 122, 122, 121, 121, 120, 120, 118, 118, 117, 116, 115, 114, 113, 112, 111, 111, 110, 110, 109, 109, 109, 108, 107, 107, 106, 105, 105, 104, 103, 102, 102, 102, 101, 100, 100, 100, 99, 99, 99]
+        
+        var cnd = ['37.85', '30.59', '6.90', '6.70', '5.96', '5.65', '1.77', '1.69', '0.64', '0.52', '0.48', '0.28', '0.12', '0.12', '0.11', '0.09', '0.06']
+        //指定图标的配置和数据
+    //    myChart.showLoading();
+
+
+               option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow',
+                        label: {
+                            show: true
+                        }
+                    }
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        mark: { show: true },
+                        dataView: { show: true, readOnly: false },
+                        magicType: { show: true, type: ['line', 'bar'] },
+                        restore: { show: true },
+                        saveAsImage: { show: true }
+                    }
+                },
+                calculable: true,
+                legend: {
+                    data: ['Growth', 'Budget 2011', 'Budget 2012'],
+                    itemGap: 5
+                },
+                grid: {
+                    top: '12%',
+                    left: '1%',
+                    right: '10%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: appdata,
+                        // axisPointer: {
+                        //     type: 'shadow'
+                        // }
+                        axisLabel: {
+                            interval: 0,
+                            //rotate: 40  ,//斜体展示
+                            formatter: function (value) {
+                                var ret = "";//拼接加\n返回的类目项
+                                var maxLength = 8;//每项显示文字个数
+                                var valLength = value.length;//X轴类目项的文字个数
+                                var rowN = Math.ceil(valLength / maxLength); //类目项需要换行的行数
+                                if (rowN > 1)//如果类目项的文字大于3,
+                                {
+                                    for (var i = 0; i < rowN; i++) {
+                                        var temp = "";//每次截取的字符串
+                                        var start = i * maxLength;//开始截取的位置
+                                        var end = start + maxLength;//结束截取的位置
+                                        //这里也可以加一个是否是最后一行的判断，但是不加也没有影响，那就不加吧
+                                        temp = value.substring(start, end) + "\n";
+                                        ret += temp; //拼接最终的字符串
+                                    }
+                                    return ret;
+                                }
+                                else {
+                                    return value;
+                                }
+                            }
+                        }
+                    }
+                    
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        name: '订单量',
+
+                        axisLabel: {
+                            formatter: '{value} 量'
+                        }
+                    }
+                ],
+                dataZoom: [
+                    {
+                        show: true,
+                        start: 94,
+                        end: 100
+                    },
+                    {
+                        type: 'inside',
+                        start: 94,
+                        end: 100
+                    },
+                    {
+                        show: true,
+                        yAxisIndex: 0,
+                        filterMode: 'empty',
+                        width: 30,
+                        height: '80%',
+                        showDataShadow: false,
+                        left: '93%'
+                    }
+                ],
+                series: [
+                    {
+                        name: 'Budget 2011',
+                        type: 'bar',
+                        data: cn
+                    },
+                   
+                ]
+            };
+
+
+            //初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chartmain'));
+
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(option);
+
+    </script>
+</body>
+
+</html>

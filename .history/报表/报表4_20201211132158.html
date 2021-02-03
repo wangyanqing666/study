@@ -1,0 +1,268 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <title>报表</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="chartmain" style="width:100%; height: 500px;"></div>
+
+    <script type="text/javascript">
+        appl1=[]
+        iosl2=[]
+        datalist = [
+                [3, '9.73.1', 48002],
+                [3, '9.73.2', 38256],
+                [1, '9.73.0', 32221],
+                [1, '9.73.1', 16895],
+                [3, '9.72.2', 16075],
+                [1, '9.72.1', 7284],
+                [1, '9.72.0', 4058],
+                [3, '9.72.4', 3122],
+                [3, '9.72.1', 3091],
+                [1, '9.71.1', 2052],
+                [3, '9.71.1', 1836],
+                [3, '9.70.4', 1370],
+                [1, '9.71.2', 954],
+                [1, '9.70.1', 721],
+                [1, '9.69.0', 648],
+                [1, '9.70.2', 619],
+                [3, '9.70.1', 581],
+                [3, '9.56.1', 570],
+                [1, '9.66.1', 532],
+                [3, '9.63.2', 479],
+                [1, '9.66.2', 476],
+                [3, '9.73.0', 475],
+                [3, '9.69.2', 469],
+                [3, '9.68.2', 444],
+                [3, '9.71.2', 442],
+                [1, '9.65.2', 437],
+                [1, '9.61.0', 419],
+                [3, '9.69.1', 410],
+                [3, '9.67.1', 375],
+                [1, '9.67.0', 365],
+                [1, '9.68.0', 356],
+                [1, '9.69.1', 355],
+                [1, '9.59.2', 341],
+                [1, '9.70.0', 330],
+                [3, '9.64.2', 308],
+                [3, '9.66.1', 303],
+                [3, '9.71.4', 296],
+                [1, '9.67.1', 294],
+                [1, '9.62.0', 283],
+                [1, '9.64.0', 275],
+                [3, '9.64.1', 259],
+                [3, '9.60.2', 251],
+                [1, '9.60.4', 251],
+                [3, '9.72.0', 249],
+                [1, '9.63.2', 235],
+                [1, '9.71.6', 228],
+                [3, '9.65.2', 224],
+                [1, '9.61.1', 206],
+                [3, '9.65.1', 196],
+                [1, '9.64.1', 191],
+                [3, '9.63.1', 187],
+                [1, '9.65.1', 180],
+                [3, '9.67.2', 162],
+                [1, '9.60.0', 140],
+                [3, '9.61.1', 131],
+                [1, '9.58.0', 130],
+                [1, '9.57.0', 126],
+                [3, '9.66.4', 118],
+                [1, '9.52.2', 105],
+                [1, '9.63.1', 103],
+                [3, '9.60.1', 101],
+                [1, '9.58.1', 92],
+                [1, '9.63.0', 86],
+                [1, '9.60.1', 86],
+                [1, '9.51.2', 85],
+                [3, '9.58.2', 83],
+                [3, '9.46.2', 81],
+                [3, '9.59.1', 80],
+                [1, '9.62.1', 80],
+                [3, '9.62.1', 75],
+                [1, '9.65.0', 74],
+                [1, '9.58.3', 74],
+                [1, '9.56.0', 74],
+                [1, '9.49.4', 73],
+                [1, '9.50.2', 71],
+                [3, '9.52.4', 64],
+                [3, '9.62.2', 63],
+                [1, '9.53.4', 63],
+                [1, '9.47.0', 62],
+                [3, '9.69.0', 62],
+                [3, '9.68.0', 58],
+                [1, '9.54.2', 58],
+                [3, '9.57.1', 57],
+                [3, '9.58.3', 56],
+                [3, '9.54.2', 53],
+                [3, '9.51.2', 51],
+                [3, '9.70.2', 50],
+                [3, '9.48.5', 44],
+                [1, '9.55.4', 44],
+                [3, '9.58.1', 44],
+                [3, '9.57.2', 41],
+                [3, '9.49.4', 39],
+                [1, '9.56.1', 39],
+                [1, '9.71.0', 38],
+                [3, '9.67.0', 38],
+                [3, '9.66.2', 38],
+                [3, '9.50.4', 37],
+                [3, '9.55.6', 36],
+                [1, '9.57.1', 36],
+                [1, '9.59.1', 35]
+            ]
+        //初始化echarts实例
+        var appqudao = datalist.map(function (item) {
+            if ( item[0]==3){
+                appl1.push(item);
+
+            } else if(item[0] == 1) {
+                   iosl2.push(item);
+                };
+            
+        });
+
+        var appbanben = datalist.map(function (item) {
+            return item[1];
+        });
+        var appcn = datalist.map(function (item) {
+                return item[2];
+            });
+        console.log(appl1)
+        console.log(iosl2)
+        // console.log(appcn)
+
+        // var data = genData(50);
+     option = {
+            title: {
+                text: ' APP版本订单排名',
+                left: 'center'
+
+
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true
+                    }
+                }
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                    dataView: { show: true, readOnly: false },
+                    magicType: { show: true, type: ['line', 'bar'] },
+                    restore: { show: true },
+                    saveAsImage: { show: true }
+                }
+            },
+            calculable: true,
+            legend: {
+                data: ['app版本订单量'],
+                itemGap: 5
+            },
+            grid: {
+                top: '12%',
+                left: '1%',
+                right: '10%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: datename,
+                    // axisPointer: {
+                    //     type: 'shadow'
+                    // }}
+                    axisLabel: {
+                        interval: 0,
+                        // rotate: 40  ,//斜体展示
+                        formatter: function (value) {
+                            var ret = "";//拼接加\n返回的类目项
+                            var maxLength = 4;//每项显示文字个数
+                            var valLength = value.length;//X轴类目项的文字个数
+                            var rowN = Math.ceil(valLength / maxLength); //类目项需要换行的行数
+                            if (rowN > 1)//如果类目项的文字大于3,
+                            {
+                                for (var i = 0; i < rowN; i++) {
+                                    var temp = "";//每次截取的字符串
+                                    var start = i * maxLength;//开始截取的位置
+                                    var end = start + maxLength;//结束截取的位置
+                                    //这里也可以加一个是否是最后一行的判断，但是不加也没有影响，那就不加吧
+                                    temp = value.substring(start, end) + "\n";
+                                    ret += temp; //拼接最终的字符串
+                                }
+                                return ret;
+                            }
+                            else {
+                                return value;
+                            }
+                        }
+                    }
+                }
+
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: '订单量',
+
+                    axisLabel: {
+                        formatter: '{value} 量'
+                    }
+                }
+            ],
+            dataZoom: [
+                {
+                    show: true,
+                    start: 0,
+                    end: 100
+                },
+                {
+                    type: 'inside',
+                    start: 94,
+                    end: 100
+                },
+                // {
+                //     show: true,
+                //     yAxisIndex: 0,
+                //     filterMode: 'empty',
+                //     width: 30,
+                //     height: '80%',
+                //     showDataShadow: false,
+                //     left: '93%'
+                // }
+            ],
+            series: [
+                {
+                    name: '',
+                    type: 'bar',
+                    data: datedata
+                },
+
+            ]
+        };
+
+    
+
+        var myChart = echarts.init(document.getElementById('chartmain'));
+
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(option);
+
+    </script>
+</body>
+
+</html>

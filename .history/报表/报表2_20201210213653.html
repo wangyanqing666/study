@@ -1,0 +1,144 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <title>报表</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="chartmain" style="width:100%; height: 500px;"></div>
+
+    <script type="text/javascript">
+        var appdata = ['iPhone 11', 'iPhone X', 'iPhone XS Max', 'iPhone XR', 'iPhone 7 Plus', 'iPhone 8 Plus', 'HUAWEI Mate 30 Pro 5G 全网通版', 'HUAWEI Mate 30 5G 全网通版', 'iPhone 11 Pro Max', 'HUAWEI P40 Pro 5G 全网通版', 'HUAWEI P30 全网通版', 'iPhone 8', 'iPhone 7', 'HUAWEI Mate 20 全网通版', 'iPhone 6s Plus', 'HUAWEI Mate 20 Pro 全网通版', 'HUAWEI P40 5G 全网通版', 0, 'iPhone XS', 'iPhone 11 Pro', 'HUAWEI P30 Pro 全网通版 (8GB+128GB)', 'iPhone 6s', 0, 'HUAWEI P30 Pro 全网通版', 'HUAWEI nova 5 Pro 全网通版', 'HUAWEI P20 全网通版', 'HUAWEI Mate 30 全网通版', 0, 'HUAWEI Mate 10 保时捷设计', 'HUAWEI P20 Pro 全网通版', 'HUAWEI Mate 10 全网通版', 'OPPO R15 全网通版', 0, 0, 0, 0, '荣耀 9X 全网通版', '荣耀 20 全网通版', 'HUAWEI Mate 30 Pro 全网通版', 'OPPO R17 全网通版', 'HUAWEI Mate 9 全网通版', 'HONOR View20 Dual SIM', 'HUAWEI nova 7 5G 全网通版', 'iPhone 6', 'HONOR 10 Dual SIM', 'HUAWEI nova 3 全网通版', 'iPhone SE2', 'HUAWEI nova 4 全网通版', 'iPhone 6 Plus', 'HUAWEI Mate 20 X 全网通版']
+        var cn = [10448, 9336, 6824, 6431, 5148, 4745, 4713, 3674, 3668, 3658, 3468, 3369, 3279, 2705, 2686, 2655, 2482, 2464, 2353, 2125, 2090, 2044, 1991, 1851, 1841, 1784, 1743, 1541, 1251, 1210, 1183, 1166, 1151, 1075, 1068, 1018, 982, 981, 970, 940, 934, 901, 869, 814, 759, 755, 731, 718, 704, 662]
+        
+        var cnd = ['37.85', '30.59', '6.90', '6.70', '5.96', '5.65', '1.77', '1.69', '0.64', '0.52', '0.48', '0.28', '0.12', '0.12', '0.11', '0.09', '0.06']
+        //指定图标的配置和数据
+    //    myChart.showLoading();
+
+
+               option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow',
+                        label: {
+                            show: true
+                        }
+                    }
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        mark: { show: true },
+                        dataView: { show: true, readOnly: false },
+                        magicType: { show: true, type: ['line', 'bar'] },
+                        restore: { show: true },
+                        saveAsImage: { show: true }
+                    }
+                },
+                calculable: true,
+                legend: {
+                    data: ['Growth', 'Budget 2011', 'Budget 2012'],
+                    itemGap: 5
+                },
+                grid: {
+                    top: '12%',
+                    left: '1%',
+                    right: '10%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: appdata,
+                        // axisPointer: {
+                        //     type: 'shadow'
+                        // }}
+                        axisLabel: {
+                            interval: 0,
+                            //rotate: 40  ,//斜体展示
+                            formatter: function (value) {
+                                var ret = "";//拼接加\n返回的类目项
+                                var maxLength = ;//每项显示文字个数
+                                var valLength = value.length;//X轴类目项的文字个数
+                                var rowN = Math.ceil(valLength / maxLength); //类目项需要换行的行数
+                                if (rowN > 1)//如果类目项的文字大于3,
+                                {
+                                    for (var i = 0; i < rowN; i++) {
+                                        var temp = "";//每次截取的字符串
+                                        var start = i * maxLength;//开始截取的位置
+                                        var end = start + maxLength;//结束截取的位置
+                                        //这里也可以加一个是否是最后一行的判断，但是不加也没有影响，那就不加吧
+                                        temp = value.substring(start, end) + "\n";
+                                        ret += temp; //拼接最终的字符串
+                                    }
+                                    return ret;
+                                }
+                                else {
+                                    return value;
+                                }
+                            }
+                        }
+                    }
+                    
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        name: '订单量',
+
+                        axisLabel: {
+                            formatter: '{value} 量'
+                        }
+                    }
+                ],
+                dataZoom: [
+                    {
+                        show: true,
+                        start: 94,
+                        end: 100
+                    },
+                    {
+                        type: 'inside',
+                        start: 94,
+                        end: 100
+                    },
+                    {
+                        show: true,
+                        yAxisIndex: 0,
+                        filterMode: 'empty',
+                        width: 30,
+                        height: '80%',
+                        showDataShadow: false,
+                        left: '93%'
+                    }
+                ],
+                series: [
+                    {
+                        name: 'Budget 2011',
+                        type: 'bar',
+                        data: cn
+                    },
+                   
+                ]
+            };
+
+
+            //初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chartmain'));
+
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(option);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,531 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <title>报表</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="chartmain" style="width:50%; height: 300px;"></div>
+
+    <script type="text/javascript">
+        var buckets=[
+            {
+              "name": "iPhone12,1",
+              "value": 4556
+            },
+            {
+              "name": "iPhone10,3",
+              "value": 4043
+            },
+            {
+              "name": "iPhone11,6",
+              "value": 3123
+            },
+            {
+              "name": "iPhone11,8",
+              "value": 2798
+            },
+            {
+              "name": "iPhone9,2",
+              "value": 2364
+            },
+            {
+              "name": "iPhone10,2",
+              "value": 2289
+            },
+            {
+              "name": "LIO-AN00",
+              "value": 1897
+            },
+            {
+              "name": "iPhone12,5",
+              "value": 1743
+            },
+            {
+              "name": "TAS-AN00",
+              "value": 1556
+            },
+            {
+              "name": "ELS-AN00",
+              "value": 1532
+            },
+            {
+              "name": "iPhone9,1",
+              "value": 1451
+            },
+            {
+              "name": "iPhone10,1",
+              "value": 1369
+            },
+            {
+              "name": "ELE-AL00",
+              "value": 1349
+            },
+            {
+              "name": "iPhone8,2",
+              "value": 1240
+            },
+            {
+              "name": "iPhone13,2",
+              "value": 1157
+            },
+            {
+              "name": "HMA-AL00",
+              "value": 1140
+            },
+            {
+              "name": "ANA-AN00",
+              "value": 1098
+            },
+            {
+              "name": "iPhone13,4",
+              "value": 1078
+            },
+            {
+              "name": "iPhone11,2",
+              "value": 1008
+            },
+            {
+              "name": "LYA-AL00",
+              "value": 993
+            },
+            {
+              "name": "iPhone8,1",
+              "value": 912
+            },
+            {
+              "name": "SEA-AL10",
+              "value": 838
+            },
+            {
+              "name": "iPhone12,3",
+              "value": 800
+            },
+            {
+              "name": "VOG-AL00",
+              "value": 789
+            },
+            {
+              "name": "VOG-AL10",
+              "value": 772
+            },
+            {
+              "name": "TAS-AL00",
+              "value": 727
+            },
+            {
+              "name": "EML-AL00",
+              "value": 723
+            },
+            {
+              "name": "iPhone13,3",
+              "value": 694
+            },
+            {
+              "name": "PACM00",
+              "value": 692
+            },
+            {
+              "name": "Mi 10",
+              "value": 554
+            },
+            {
+              "name": "NOH-AN00",
+              "value": 554
+            },
+            {
+              "name": "MI 8",
+              "value": 549
+            },
+            {
+              "name": "CLT-AL00",
+              "value": 544
+            },
+            {
+              "name": "BLA-AL00",
+              "value": 525
+            },
+            {
+              "name": "ALP-AL00",
+              "value": 501
+            },
+            {
+              "name": "LIO-AL00",
+              "value": 500
+            },
+            {
+              "name": "YAL-AL00",
+              "value": 463
+            },
+            {
+              "name": "PBEM00",
+              "value": 444
+            },
+            {
+              "name": "HLK-AL00",
+              "value": 434
+            },
+            {
+              "name": "MI 9",
+              "value": 425
+            },
+            {
+              "name": "MHA-AL00",
+              "value": 415
+            },
+            {
+              "name": "JEF-AN00",
+              "value": 385
+            },
+            {
+              "name": "MI 8 Lite",
+              "value": 356
+            },
+            {
+              "name": "PAR-AL00",
+              "value": 345
+            },
+            {
+              "name": "PCT-AL10",
+              "value": 344
+            },
+            {
+              "name": "COL-AL10",
+              "value": 335
+            },
+            {
+              "name": "iPhone7,2",
+              "value": 335
+            },
+            {
+              "name": "EVR-AL00",
+              "value": 331
+            },
+            {
+              "name": "iPhone12,8",
+              "value": 321
+            },
+            {
+              "name": "Redmi Note 8 Pro",
+              "value": 320
+            },
+            {
+              "name": "VCE-AL00",
+              "value": 320
+            },
+            {
+              "name": "iPhone7,1",
+              "value": 320
+            },
+            {
+              "name": "PCAM00",
+              "value": 285
+            },
+            {
+              "name": "JER-AN10",
+              "value": 282
+            },
+            {
+              "name": "WLZ-AN00",
+              "value": 282
+            },
+            {
+              "name": "YAL-AL10",
+              "value": 282
+            },
+            {
+              "name": "vivo X21A",
+              "value": 267
+            },
+            {
+              "name": "STK-AL00",
+              "value": 245
+            },
+            {
+              "name": "iPhone10,6",
+              "value": 235
+            },
+            {
+              "name": "LYA-AL10",
+              "value": 233
+            },
+            {
+              "name": "BKL-AL20",
+              "value": 232
+            },
+            {
+              "name": "Redmi K20 Pro",
+              "value": 232
+            },
+            {
+              "name": "OXF-AN10",
+              "value": 230
+            },
+            {
+              "name": "Redmi K30 Pro",
+              "value": 227
+            },
+            {
+              "name": "SPN-AL00",
+              "value": 224
+            },
+            {
+              "name": "CDY-AN00",
+              "value": 221
+            },
+            {
+              "name": "ELS-AN10",
+              "value": 215
+            },
+            {
+              "name": "V1809A",
+              "value": 213
+            },
+            {
+              "name": "M2006J10C",
+              "value": 212
+            },
+            {
+              "name": "CDY-AN90",
+              "value": 210
+            },
+            {
+              "name": "V1838A",
+              "value": 207
+            },
+            {
+              "name": "MAR-AL00",
+              "value": 202
+            },
+            {
+              "name": "V1813A",
+              "value": 195
+            },
+            {
+              "name": "EBG-AN00",
+              "value": 193
+            },
+            {
+              "name": "JSN-AL00a",
+              "value": 188
+            },
+            {
+              "name": "Redmi K30 5G",
+              "value": 185
+            },
+            {
+              "name": "HWI-AL00",
+              "value": 182
+            },
+            {
+              "name": "Redmi K30",
+              "value": 181
+            },
+            {
+              "name": "V1824A",
+              "value": 177
+            },
+            {
+              "name": "vivo X20A",
+              "value": 177
+            },
+            {
+              "name": "LIO-AN00P",
+              "value": 176
+            },
+            {
+              "name": "Mi 10 Pro",
+              "value": 174
+            },
+            {
+              "name": "JEF-AN20",
+              "value": 173
+            },
+            {
+              "name": "GLK-AL00",
+              "value": 171
+            },
+            {
+              "name": "MI 6",
+              "value": 171
+            },
+            {
+              "name": "Redmi Note 7 Pro",
+              "value": 170
+            },
+            {
+              "name": "BMH-AN10",
+              "value": 158
+            },
+            {
+              "name": "JSN-AL00",
+              "value": 154
+            },
+            {
+              "name": "V1938CT",
+              "value": 152
+            },
+            {
+              "name": "INE-AL00",
+              "value": 151
+            },
+            {
+              "name": "JKM-AL00b",
+              "value": 149
+            },
+            {
+              "name": "V1829A",
+              "value": 149
+            },
+            {
+              "name": "PCAM10",
+              "value": 148
+            },
+            {
+              "name": "V1901A",
+              "value": 148
+            },
+            {
+              "name": "VKY-AL00",
+              "value": 148
+            },
+            {
+              "name": "MIX 2S",
+              "value": 147
+            },
+            {
+              "name": "V1911A",
+              "value": 147
+            },
+            {
+              "name": "PCHM10",
+              "value": 146
+            },
+            {
+              "name": "V1981A",
+              "value": 146
+            },
+            {
+              "name": "VTR-AL00",
+              "value": 146
+            }
+          ].slice(0,60);
+        appl1 = []
+        appdic={}
+        // iosl2 = []
+        // var appqudao = k1.map(function (item) { 
+        //     if (item[0].indexOf('iPhone') == -1) {
+        //         appl1.push(item);
+
+        //     } else {
+        //         iosl2.push(item);
+        //     };
+
+        // });
+
+        var appbanben = buckets.map(function (item, index, arr) {
+            appl1.push(item.name)
+            // 默认输出前5个
+            appdic[item.name]= index<6
+            });
+        console.log(appl1)
+        // });
+        // var appcn = appl1.map(function (item) {
+        //     return item[1];
+        // });
+        // var iosappbanben = iosl2.map(function (item) {
+        //     return item[0];
+        // });
+        // var iosappcn = iosl2.map(function (item) {
+        //     return item[1];
+        // });
+
+
+ option = {
+        title: {
+         text: 'APP型号订单量以及订单占比',
+        left: 'center',
+             textStyle: {
+       //文字颜色
+       color: '#ccc',
+       //字体风格,'normal','italic','oblique'
+       fontStyle: 'normal',
+       //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+       fontWeight: 'bold',
+       //字体系列
+       fontFamily: 'sans-serif',
+        //字体大小
+　　　　 fontSize: 12
+         }
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
+        },
+        legend: {
+            type: 'scroll',
+            orient: 'vertical',
+                itemHeight: 5, //修改icon图形大小
+                textStyle: {
+            fontSize: 12,
+            color: '#000'
+          },
+
+            left: 10,
+            
+            data: appl1,
+            selected: appdic
+
+
+        },
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: ['40%', '55%'],
+                //  radius: '55%',
+
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                },
+                // emphasis: {
+                //     itemStyle: {
+                //         shadowBlur: 10,
+                //         shadowOffsetX: 0,
+                //         shadowColor: 'rgba(0, 0, 0, 0.5)'
+                //     }
+                // },
+                labelLine: {
+                    show: false
+                },
+                data: buckets
+            }
+        ]
+    };
+        //初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chartmain'));
+
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(option);
+
+    </script>
+</body>
+
+</html>

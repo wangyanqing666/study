@@ -1,0 +1,497 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <title>报表</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="chartmain" style="width:100%; height: 500px;"></div>
+
+    <script type="text/javascript">
+        var buckets=[
+            {
+              "key": "iPhone12,1",
+              "doc_count": 4556
+            },
+            {
+              "key": "iPhone10,3",
+              "doc_count": 4043
+            },
+            {
+              "key": "iPhone11,6",
+              "doc_count": 3123
+            },
+            {
+              "key": "iPhone11,8",
+              "doc_count": 2798
+            },
+            {
+              "key": "iPhone9,2",
+              "doc_count": 2364
+            },
+            {
+              "key": "iPhone10,2",
+              "doc_count": 2289
+            },
+            {
+              "key": "LIO-AN00",
+              "doc_count": 1897
+            },
+            {
+              "key": "iPhone12,5",
+              "doc_count": 1743
+            },
+            {
+              "key": "TAS-AN00",
+              "doc_count": 1556
+            },
+            {
+              "key": "ELS-AN00",
+              "doc_count": 1532
+            },
+            {
+              "key": "iPhone9,1",
+              "doc_count": 1451
+            },
+            {
+              "key": "iPhone10,1",
+              "doc_count": 1369
+            },
+            {
+              "key": "ELE-AL00",
+              "doc_count": 1349
+            },
+            {
+              "key": "iPhone8,2",
+              "doc_count": 1240
+            },
+            {
+              "key": "iPhone13,2",
+              "doc_count": 1157
+            },
+            {
+              "key": "HMA-AL00",
+              "doc_count": 1140
+            },
+            {
+              "key": "ANA-AN00",
+              "doc_count": 1098
+            },
+            {
+              "key": "iPhone13,4",
+              "doc_count": 1078
+            },
+            {
+              "key": "iPhone11,2",
+              "doc_count": 1008
+            },
+            {
+              "key": "LYA-AL00",
+              "doc_count": 993
+            },
+            {
+              "key": "iPhone8,1",
+              "doc_count": 912
+            },
+            {
+              "key": "SEA-AL10",
+              "doc_count": 838
+            },
+            {
+              "key": "iPhone12,3",
+              "doc_count": 800
+            },
+            {
+              "key": "VOG-AL00",
+              "doc_count": 789
+            },
+            {
+              "key": "VOG-AL10",
+              "doc_count": 772
+            },
+            {
+              "key": "TAS-AL00",
+              "doc_count": 727
+            },
+            {
+              "key": "EML-AL00",
+              "doc_count": 723
+            },
+            {
+              "key": "iPhone13,3",
+              "doc_count": 694
+            },
+            {
+              "key": "PACM00",
+              "doc_count": 692
+            },
+            {
+              "key": "Mi 10",
+              "doc_count": 554
+            },
+            {
+              "key": "NOH-AN00",
+              "doc_count": 554
+            },
+            {
+              "key": "MI 8",
+              "doc_count": 549
+            },
+            {
+              "key": "CLT-AL00",
+              "doc_count": 544
+            },
+            {
+              "key": "BLA-AL00",
+              "doc_count": 525
+            },
+            {
+              "key": "ALP-AL00",
+              "doc_count": 501
+            },
+            {
+              "key": "LIO-AL00",
+              "doc_count": 500
+            },
+            {
+              "key": "YAL-AL00",
+              "doc_count": 463
+            },
+            {
+              "key": "PBEM00",
+              "doc_count": 444
+            },
+            {
+              "key": "HLK-AL00",
+              "doc_count": 434
+            },
+            {
+              "key": "MI 9",
+              "doc_count": 425
+            },
+            {
+              "key": "MHA-AL00",
+              "doc_count": 415
+            },
+            {
+              "key": "JEF-AN00",
+              "doc_count": 385
+            },
+            {
+              "key": "MI 8 Lite",
+              "doc_count": 356
+            },
+            {
+              "key": "PAR-AL00",
+              "doc_count": 345
+            },
+            {
+              "key": "PCT-AL10",
+              "doc_count": 344
+            },
+            {
+              "key": "COL-AL10",
+              "doc_count": 335
+            },
+            {
+              "key": "iPhone7,2",
+              "doc_count": 335
+            },
+            {
+              "key": "EVR-AL00",
+              "doc_count": 331
+            },
+            {
+              "key": "iPhone12,8",
+              "doc_count": 321
+            },
+            {
+              "key": "Redmi Note 8 Pro",
+              "doc_count": 320
+            },
+            {
+              "key": "VCE-AL00",
+              "doc_count": 320
+            },
+            {
+              "key": "iPhone7,1",
+              "doc_count": 320
+            },
+            {
+              "key": "PCAM00",
+              "doc_count": 285
+            },
+            {
+              "key": "JER-AN10",
+              "doc_count": 282
+            },
+            {
+              "key": "WLZ-AN00",
+              "doc_count": 282
+            },
+            {
+              "key": "YAL-AL10",
+              "doc_count": 282
+            },
+            {
+              "key": "vivo X21A",
+              "doc_count": 267
+            },
+            {
+              "key": "STK-AL00",
+              "doc_count": 245
+            },
+            {
+              "key": "iPhone10,6",
+              "doc_count": 235
+            },
+            {
+              "key": "LYA-AL10",
+              "doc_count": 233
+            },
+            {
+              "key": "BKL-AL20",
+              "doc_count": 232
+            },
+            {
+              "key": "Redmi K20 Pro",
+              "doc_count": 232
+            },
+            {
+              "key": "OXF-AN10",
+              "doc_count": 230
+            },
+            {
+              "key": "Redmi K30 Pro",
+              "doc_count": 227
+            },
+            {
+              "key": "SPN-AL00",
+              "doc_count": 224
+            },
+            {
+              "key": "CDY-AN00",
+              "doc_count": 221
+            },
+            {
+              "key": "ELS-AN10",
+              "doc_count": 215
+            },
+            {
+              "key": "V1809A",
+              "doc_count": 213
+            },
+            {
+              "key": "M2006J10C",
+              "doc_count": 212
+            },
+            {
+              "key": "CDY-AN90",
+              "doc_count": 210
+            },
+            {
+              "key": "V1838A",
+              "doc_count": 207
+            },
+            {
+              "key": "MAR-AL00",
+              "doc_count": 202
+            },
+            {
+              "key": "V1813A",
+              "doc_count": 195
+            },
+            {
+              "key": "EBG-AN00",
+              "doc_count": 193
+            },
+            {
+              "key": "JSN-AL00a",
+              "doc_count": 188
+            },
+            {
+              "key": "Redmi K30 5G",
+              "doc_count": 185
+            },
+            {
+              "key": "HWI-AL00",
+              "doc_count": 182
+            },
+            {
+              "key": "Redmi K30",
+              "doc_count": 181
+            },
+            {
+              "key": "V1824A",
+              "doc_count": 177
+            },
+            {
+              "key": "vivo X20A",
+              "doc_count": 177
+            },
+            {
+              "key": "LIO-AN00P",
+              "doc_count": 176
+            },
+            {
+              "key": "Mi 10 Pro",
+              "doc_count": 174
+            },
+            {
+              "key": "JEF-AN20",
+              "doc_count": 173
+            },
+            {
+              "key": "GLK-AL00",
+              "doc_count": 171
+            },
+            {
+              "key": "MI 6",
+              "doc_count": 171
+            },
+            {
+              "key": "Redmi Note 7 Pro",
+              "doc_count": 170
+            },
+            {
+              "key": "BMH-AN10",
+              "doc_count": 158
+            },
+            {
+              "key": "JSN-AL00",
+              "doc_count": 154
+            },
+            {
+              "key": "V1938CT",
+              "doc_count": 152
+            },
+            {
+              "key": "INE-AL00",
+              "doc_count": 151
+            },
+            {
+              "key": "JKM-AL00b",
+              "doc_count": 149
+            },
+            {
+              "key": "V1829A",
+              "doc_count": 149
+            },
+            {
+              "key": "PCAM10",
+              "doc_count": 148
+            },
+            {
+              "key": "V1901A",
+              "doc_count": 148
+            },
+            {
+              "key": "VKY-AL00",
+              "doc_count": 148
+            },
+            {
+              "key": "MIX 2S",
+              "doc_count": 147
+            },
+            {
+              "key": "V1911A",
+              "doc_count": 147
+            },
+            {
+              "key": "PCHM10",
+              "doc_count": 146
+            },
+            {
+              "key": "V1981A",
+              "doc_count": 146
+            },
+            {
+              "key": "VTR-AL00",
+              "doc_count": 146
+            }
+          ];
+        appl1 = []
+        // iosl2 = []
+        // var appqudao = k1.map(function (item) {
+        //     if (item[0].indexOf('iPhone') == -1) {
+        //         appl1.push(item);
+
+        //     } else {
+        //         iosl2.push(item);
+        //     };
+
+        // });
+
+        var appbanben = buckets.map(function (item) {
+            return appl1.push(item.key)
+            });
+        console.log(appl1)
+        // });
+        // var appcn = appl1.map(function (item) {
+        //     return item[1];
+        // });
+        // var iosappbanben = iosl2.map(function (item) {
+        //     return item[0];
+        // });
+        // var iosappcn = iosl2.map(function (item) {
+        //     return item[1];
+        // });
+
+
+ option = {
+        title: {
+         text: '各版本订单量',
+         left: '25%',
+         textAlign: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 10,
+            data: appl1
+        },
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: buckets
+            }
+        ]
+    };
+        //初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chartmain'));
+
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(option);
+
+    </script>
+</body>
+
+</html>
